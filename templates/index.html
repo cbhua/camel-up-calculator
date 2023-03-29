@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/reset.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/index.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /> 
+    <link rel="stylesheet" type="text/css" href="http://www.cssmoban.com/statics/css/code-demo.css" />
+    <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'>
+    <script src="{{ url_for('static', filename='js/drag.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/submit.js') }}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <title>Camel Up Simulator</title>
+</head>
+<body>
+    <form id="main-form" method="post" target="_blank">
+        {% if method != 'POST' %}
+        <div class="input">
+            <div class="section-title">
+                <b class="section-main-title"> 选择移动的骆驼 </b>
+                <br>
+                <b class="section-sub-title"> Choose camels to move </b>
+            </div> 
+            <div class="grid">
+                <label class="card">
+                    <input class="card__input" type="checkbox" name="b_move"/>
+                    <div class="card__body">
+                    <div class="card__body-cover"><img class="card__body-cover-image" src="{{ url_for('static', filename='fig/category-a.png') }}"/><span class="card__body-cover-chackbox"> 
+                        <svg class="card__body-cover-chackbox--svg" viewBox="0 0 12 10">
+                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                        </svg></span></div>
+                    <header class="card__body-header">
+                        <h2 class="card__body-header-title">小蓝</h2>
+                        <p class="card__body-header-subtitle">Blue Camel</p>
+                    </header>
+                    </div>
+                </label>
+                <label class="card">
+                    <input class="card__input" type="checkbox" name="g_move"/>
+                    <div class="card__body">
+                    <div class="card__body-cover"><img class="card__body-cover-image" src="{{ url_for('static', filename='fig/category-b.png') }}"/><span class="card__body-cover-chackbox"> 
+                        <svg class="card__body-cover-chackbox--svg" viewBox="0 0 12 10">
+                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                        </svg></span></div>
+                    <header class="card__body-header">
+                        <h2 class="card__body-header-title">小绿</h2>
+                        <p class="card__body-header-subtitle">Green Camel</p>
+                    </header>
+                    </div>
+                </label>
+                <label class="card">
+                    <input class="card__input" type="checkbox" name="r_move"/>
+                    <div class="card__body">
+                    <div class="card__body-cover"><img class="card__body-cover-image" src="{{ url_for('static', filename='fig/category-c.png') }}"/><span class="card__body-cover-chackbox"> 
+                        <svg class="card__body-cover-chackbox--svg" viewBox="0 0 12 10">
+                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                        </svg></span></div>
+                    <header class="card__body-header">
+                        <h2 class="card__body-header-title">小红</h2>
+                        <p class="card__body-header-subtitle">Red Camel</p>
+                    </header>
+                    </div>
+                </label>
+                <label class="card">
+                    <input class="card__input" type="checkbox" name="y_move"/>
+                    <div class="card__body">
+                    <div class="card__body-cover"><img class="card__body-cover-image" src="{{ url_for('static', filename='fig/category-d.png') }}"/><span class="card__body-cover-chackbox"> 
+                        <svg class="card__body-cover-chackbox--svg" viewBox="0 0 12 10">
+                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                        </svg></span></div>
+                    <header class="card__body-header">
+                        <h2 class="card__body-header-title">小黄</h2>
+                        <p class="card__body-header-subtitle">Yello Camel</p>
+                    </header>
+                    </div>
+                </label>
+                <label class="card">
+                    <input class="card__input" type="checkbox" name="w_move"/>
+                    <div class="card__body">
+                    <div class="card__body-cover"><img class="card__body-cover-image" src="{{ url_for('static', filename='fig/category-e.png') }}"/><span class="card__body-cover-chackbox"> 
+                        <svg class="card__body-cover-chackbox--svg" viewBox="0 0 12 10">
+                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+                        </svg></span></div>
+                    <header class="card__body-header">
+                        <h2 class="card__body-header-title">小白</h2>
+                        <p class="card__body-header-subtitle">White Camel</p>
+                    </header>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <br>
+        <div class="input">
+            <div class="section-title">
+                <b class="section-main-title"> 放置骆驼位置 </b>
+                <br>
+                <b class="section-sub-title"> Set camles location </b>
+            </div> 
+
+            <div id="camel-home">
+                <div id="b-camel-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/blue_camel.png') }}" draggable="true" ondragstart="drag(event)" id="b-camel">
+                </div>
+                <div id="g-camel-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/green_camel.png') }}" draggable="true" ondragstart="drag(event)" id="g-camel">
+                </div>
+                <div id="r-camel-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/red_camel.png') }}" draggable="true" ondragstart="drag(event)" id="r-camel">
+                </div>
+                <div id="y-camel-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/yellow_camel.png') }}" draggable="true" ondragstart="drag(event)" id="y-camel">
+                </div>
+                <div id="w-camel-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/white_camel.png') }}" draggable="true" ondragstart="drag(event)" id="w-camel">
+                </div>
+            </div>
+
+            <!-- <div id="map" backgound_image="{{ url_for('static', filename='fig/map.png') }}""> -->
+            <div id="map-bg">
+            <div id="map">
+                <!-- Block Line 1 -->
+                <div class="tile" id="tile-15-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-16-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-1-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-2-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-3-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-15-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-16-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-1-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-2-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-3-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-15-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-16-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-1-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-2-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-3-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-15-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-16-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-1-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-2-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-3-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-15-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-16-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-1-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-2-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-3-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <!-- Block Line 2 -->
+                <div class="tile" id="tile-14-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-4-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-14-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-4-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-14-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-4-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-14-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-4-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-14-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-4-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <!-- Block Line 3 -->
+                <div class="tile" id="tile-13-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-5-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-13-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-5-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-13-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-5-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-13-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-5-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-13-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-5-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <!-- Block Line 4 -->
+                <div class="tile" id="tile-12-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-6-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-12-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-6-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-12-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-6-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-12-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-6-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-12-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="empty-tile"></div>
+                <div class="tile" id="tile-6-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <!-- Block Line 5 -->
+                <div class="tile" id="tile-11-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-10-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-9-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-8-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-7-0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-11-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-10-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-9-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-8-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-7-1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-11-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-10-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-9-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-8-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-7-2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-11-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-10-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-9-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-8-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-7-3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <div class="tile" id="tile-11-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-10-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-9-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-8-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="tile" id="tile-7-4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>
+            </div>
+        </div>
+        <br>
+        <input type="hidden" name="b_loc" id="b_loc" value="tile-0-0">
+        <input type="hidden" name="g_loc" id="g_loc" value="tile-0-0">
+        <input type="hidden" name="r_loc" id="r_loc" value="tile-0-0">
+        <input type="hidden" name="y_loc" id="y_loc" value="tile-0-0">
+        <input type="hidden" name="w_loc" id="w_loc" value="tile-0-0">
+        <div class="submit">
+            <input id="calculation-botton" type="submit" name="submit" value="Calculate!">
+            <script type="text/javascript">
+                $("#main-form").submit(function(eventObj) {
+                    document.getElementById("b_loc").value = document.getElementById("b-camel").parentElement.id;
+                    document.getElementById("g_loc").value = document.getElementById("g-camel").parentElement.id;
+                    document.getElementById("r_loc").value = document.getElementById("r-camel").parentElement.id;
+                    document.getElementById("y_loc").value = document.getElementById("y-camel").parentElement.id;
+                    document.getElementById("w_loc").value = document.getElementById("w-camel").parentElement.id;
+                });
+            </script>
+        </div>
+        {% endif %}
+        {% if method == 'POST' %}
+        <div class="result-section-title">
+            <b class="section-main-title"> 模拟计算结果 </b>
+            <br>
+            <b class="section-sub-title"> Simulation results </b>
+        </div> 
+        <div>
+            <div id="result">
+                <div class="result-figure-box">
+                    <img src="{{ url_for('static', filename='fig/1_ranking_probability.png') }}", class="result-figure">
+                </div>
+                <div class="result-figure-box">
+                    <img src="{{ url_for('static', filename='fig/2_ranking_probability.png') }}", class="result-figure">
+                </div>
+                <div class="result-figure-box">
+                    <img src="{{ url_for('static', filename='fig/3_ranking_probability.png') }}", class="result-figure">
+                </div>
+                <div class="result-figure-box">
+                    <img src="{{ url_for('static', filename='fig/4_ranking_probability.png') }}", class="result-figure">
+                </div>
+                <div class="result-figure-box">
+                    <img src="{{ url_for('static', filename='fig/5_ranking_probability.png') }}", class="result-figure">
+                </div>
+
+                <div class="result-figure-box">
+                    <img src="{{ url_for('static', filename='fig/Blue_rewards.png') }}", class="result-figure">
+                </div>
+                <div class="result-figure-box">
+                    <img src="{{ url_for('static', filename='fig/Green_rewards.png') }}", class="result-figure">
+                </div>
+                <div class="result-figure-box">
+                    <img src="{{ url_for('static', filename='fig/Red_rewards.png') }}", class="result-figure">
+                </div>
+                <div class="result-figure-box">
+                    <img src="{{ url_for('static', filename='fig/Yellow_rewards.png') }}", class="result-figure">
+                </div>
+                <div class="result-figure-box">
+                    <img src="{{ url_for('static', filename='fig/White_rewards.png') }}", class="result-figure">
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </form>
+</body>
+</html>

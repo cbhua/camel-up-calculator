@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/reset.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/index.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" /> 
+    <link rel="stylesheet" type="text/css" href="http://www.cssmoban.com/statics/css/code-demo.css" />
+    <title>Simulation Result</title>
+</head>
+<body>
+    <div class="container">
+        <div class="result-section-title">
+            <b class="section-main-title"> 模拟计算结果 </b>
+            <br>
+            <b class="section-sub-title"> Simulation results </b>
+        </div> 
+        <div id="result">
+            <div class="result-figure-box">
+                <img src="{{ url_for('static', filename='fig/1_ranking_probability.png') }}", class="result-figure">
+            </div>
+            <div class="result-figure-box">
+                <img src="{{ url_for('static', filename='fig/2_ranking_probability.png') }}", class="result-figure">
+            </div>
+            <div class="result-figure-box">
+                <img src="{{ url_for('static', filename='fig/3_ranking_probability.png') }}", class="result-figure">
+            </div>
+            <div class="result-figure-box">
+                <img src="{{ url_for('static', filename='fig/4_ranking_probability.png') }}", class="result-figure">
+            </div>
+            <div class="result-figure-box">
+                <img src="{{ url_for('static', filename='fig/5_ranking_probability.png') }}", class="result-figure">
+            </div>
+
+            <div class="result-figure-box">
+                <img src="{{ url_for('static', filename='fig/Blue_rewards.png') }}", class="result-figure">
+            </div>
+            <div class="result-figure-box">
+                <img src="{{ url_for('static', filename='fig/Green_rewards.png') }}", class="result-figure">
+            </div>
+            <div class="result-figure-box">
+                <img src="{{ url_for('static', filename='fig/Red_rewards.png') }}", class="result-figure">
+            </div>
+            <div class="result-figure-box">
+                <img src="{{ url_for('static', filename='fig/Yellow_rewards.png') }}", class="result-figure">
+            </div>
+            <div class="result-figure-box">
+                <img src="{{ url_for('static', filename='fig/White_rewards.png') }}", class="result-figure">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
