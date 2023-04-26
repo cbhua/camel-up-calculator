@@ -65,11 +65,7 @@ There are two functions in the `src/leg.py`, which are `simulate()` and `theory(
 
 ### ☑️ Develop Plan and Bugs
 
-Now only the simplest one step betting simulation is implemented, there are many other aspectes should be considered: 
-
-- [ ] Calculate the reward of putting the trap in the map;
-- [ ] Calculate the reward of the overall winner camel (this gonna to be a complex question);
-- [ ] Consider other players' operation (this gonna to be an extream complex question);
+The biggest problem of using the statistic method is that we can not get a proper rewards for the overall winner or loser. Since the variance is huge that by a commen way we can not calculate it. So my idea is that can we apply the **reinfocement learning** here? This might be the next step. If you are intereste at this topic, please feel free to dicsuss and contribute, we need your help. 
 
 And if you find some bugs in the code, please feel free to raise an issue or pull request. Welcome to contribute. 
 
