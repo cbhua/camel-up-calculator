@@ -274,7 +274,7 @@ body .grid {
 
 /* ---------- Camel Drag and Drop ---------- */
 
-#camel-home {
+#camel-home, #trap-home, #acce-home {
     display: grid;
     /* grid-template-columns: 120px 120px 120px 120px 120px; */
     grid-template-columns: repeat(5, 140px);
@@ -282,9 +282,12 @@ body .grid {
     /* justify-content: center; */
     justify-content: space-around;
     align-content: space-around;
+    padding-bottom: 4px;
 }
 
-#b-camel-home, #g-camel-home, #r-camel-home, #y-camel-home, #w-camel-home {
+#b-camel-home, #g-camel-home, #r-camel-home, #y-camel-home, #w-camel-home,
+#trap-1-home, #trap-2-home, #trap-3-home, #trap-4-home, #trap-5-home,
+#acce-1-home, #acce-2-home, #acce-3-home, #acce-4-home, #acce-5-home{
     width: 140px;
     height: 35px;
     border: 1px solid #aaaaaa;
@@ -295,7 +298,9 @@ body .grid {
     
 }
 
-#b-camel, #g-camel, #r-camel, #y-camel, #w-camel {
+#b-camel, #g-camel, #r-camel, #y-camel, #w-camel,
+#trap-1, #trap-2, #trap-3, #trap-4, #trap-5,
+#acce-1, #acce-2, #acce-3, #acce-4, #acce-5 {
     width: 115px;
     height: 23px;
     object-fit: cover;
@@ -360,7 +365,7 @@ body .grid {
 
 #result {
     display: grid;
-    grid-template-columns: repeat(5, 250px);
+    grid-template-columns: repeat(6, 250px);
     grid-template-rows: repeat(2, 250px);
     justify-content: space-around;
     align-content: space-around;
@@ -374,4 +379,8 @@ body .grid {
 .result-figure {
     width:  250px;
     height: 250px;
+}
+
+#result-final-winner, #result-final-loser {
+    padding-left: 30px;
 }

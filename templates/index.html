@@ -117,6 +117,42 @@
                 </div>
             </div>
 
+            <div id="trap-home">
+                <div id="trap-1-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/trap.png') }}" draggable="true" ondragstart="drag(event)" id="trap-1">
+                </div>
+                <div id="trap-2-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/trap.png') }}" draggable="true" ondragstart="drag(event)" id="trap-2">
+                </div>
+                <div id="trap-3-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/trap.png') }}" draggable="true" ondragstart="drag(event)" id="trap-3">
+                </div>
+                <div id="trap-4-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/trap.png') }}" draggable="true" ondragstart="drag(event)" id="trap-4">
+                </div>
+                <div id="trap-5-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/trap.png') }}" draggable="true" ondragstart="drag(event)" id="trap-5">
+                </div>
+            </div>
+
+            <div id="acce-home">
+                <div id="acce-1-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/acce.png') }}" draggable="true" ondragstart="drag(event)" id="acce-1">
+                </div>
+                <div id="acce-2-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/acce.png') }}" draggable="true" ondragstart="drag(event)" id="acce-2">
+                </div>
+                <div id="acce-3-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/acce.png') }}" draggable="true" ondragstart="drag(event)" id="acce-3">
+                </div>
+                <div id="acce-4-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/acce.png') }}" draggable="true" ondragstart="drag(event)" id="acce-4">
+                </div>
+                <div id="acce-5-home" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <img src="{{ url_for('static', filename='fig/acce.png') }}" draggable="true" ondragstart="drag(event)" id="acce-5">
+                </div>
+            </div>
+
             <!-- <div id="map" backgound_image="{{ url_for('static', filename='fig/map.png') }}""> -->
             <div id="map-bg">
             <div id="map">
@@ -283,6 +319,16 @@
         <input type="hidden" name="r_loc" id="r_loc" value="tile-0-0">
         <input type="hidden" name="y_loc" id="y_loc" value="tile-0-0">
         <input type="hidden" name="w_loc" id="w_loc" value="tile-0-0">
+        <input type="hidden" name="trap_1_loc" id="trap_1_loc" value="None">
+        <input type="hidden" name="trap_2_loc" id="trap_2_loc" value="None">
+        <input type="hidden" name="trap_3_loc" id="trap_3_loc" value="None">
+        <input type="hidden" name="trap_4_loc" id="trap_4_loc" value="None">
+        <input type="hidden" name="trap_5_loc" id="trap_5_loc" value="None">
+        <input type="hidden" name="acce_1_loc" id="acce_1_loc" value="None">
+        <input type="hidden" name="acce_2_loc" id="acce_2_loc" value="None">
+        <input type="hidden" name="acce_3_loc" id="acce_3_loc" value="None">
+        <input type="hidden" name="acce_4_loc" id="acce_4_loc" value="None">
+        <input type="hidden" name="acce_5_loc" id="acce_5_loc" value="None">
         <div class="submit">
             <input id="calculation-botton" type="submit" name="submit" value="Calculate!">
             <script type="text/javascript">
@@ -292,6 +338,16 @@
                     document.getElementById("r_loc").value = document.getElementById("r-camel").parentElement.id;
                     document.getElementById("y_loc").value = document.getElementById("y-camel").parentElement.id;
                     document.getElementById("w_loc").value = document.getElementById("w-camel").parentElement.id;
+                    document.getElementById("trap_1_loc").value = document.getElementById("trap-1").parentElement.id;
+                    document.getElementById("trap_2_loc").value = document.getElementById("trap-2").parentElement.id;
+                    document.getElementById("trap_3_loc").value = document.getElementById("trap-3").parentElement.id;
+                    document.getElementById("trap_4_loc").value = document.getElementById("trap-4").parentElement.id;
+                    document.getElementById("trap_5_loc").value = document.getElementById("trap-5").parentElement.id;
+                    document.getElementById("acce_1_loc").value = document.getElementById("acce-1").parentElement.id;
+                    document.getElementById("acce_2_loc").value = document.getElementById("acce-2").parentElement.id;
+                    document.getElementById("acce_3_loc").value = document.getElementById("acce-3").parentElement.id;
+                    document.getElementById("acce_4_loc").value = document.getElementById("acce-4").parentElement.id;
+                    document.getElementById("acce_5_loc").value = document.getElementById("acce-5").parentElement.id;
                 });
             </script>
         </div>
@@ -319,6 +375,9 @@
                 <div class="result-figure-box">
                     <img src="{{ url_for('static', filename='fig/5_ranking_probability.png') }}", class="result-figure">
                 </div>
+                <div class="result-figure-box" id="result-final-winner">
+                    <img src="{{ url_for('static', filename='fig/winner_rewards.png') }}", class="result-figure">
+                </div>
 
                 <div class="result-figure-box">
                     <img src="{{ url_for('static', filename='fig/Blue_rewards.png') }}", class="result-figure">
@@ -334,6 +393,9 @@
                 </div>
                 <div class="result-figure-box">
                     <img src="{{ url_for('static', filename='fig/White_rewards.png') }}", class="result-figure">
+                </div>
+                <div class="result-figure-box" id="result-final-loser">
+                    <img src="{{ url_for('static', filename='fig/loser_rewards.png') }}", class="result-figure">
                 </div>
             </div>
         </div>

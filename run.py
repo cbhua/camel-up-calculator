@@ -11,6 +11,10 @@ def login():
     move_value = []
     loc_name = ['b_loc', 'g_loc', 'r_loc', 'y_loc', 'w_loc']
     loc_value = []
+    trap_name = ['trap_1_loc', 'trap_2_loc', 'trap_3_loc', 'trap_4_loc', 'trap_5_loc']
+    trap_value = []
+    acce_name = ['acce_1_loc', 'acce_2_loc', 'acce_3_loc', 'acce_4_loc', 'acce_5_loc']
+    acce_value = []
 
     if request.method == 'POST':
         print(request.form)
@@ -24,8 +28,18 @@ def login():
             loc = request.form[i]
             loc_value.append(loc[5:])
 
+        for i in trap_name: # Upload trap information
+            loc = request.form[i]
+            if loc[:4] == 'tile':
+                trap_value.append(loc[5:])
+
+        for i in acce_name: # Upload acce information
+            loc = request.form[i]
+            if loc[:4] == 'tile':
+                acce_value.append(loc[5:])
+
         # Simulation
-        simulate(move_value, loc_value)
+        simulate(move_value, loc_value, trap_value, acce_value)
 
         return redirect(url_for('result'))
     else:
